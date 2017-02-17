@@ -1,0 +1,82 @@
+<!-- 下面的这种效果会在很多网站的搜索框中运用，搜索框内显示一些热点搜索内容供用户点击，但是用户真正输入内容的时候总是要隐藏这些热词的，我们的思路是在输入框获取到焦点事件的时候触发一些样式，所以本能的就与了input:focus这个选择器，此后就是如何找到需要隐藏的元素，除了平时使用最多的后代选择器之外，我们想要选择到同级元素还可以使用相邻和兄弟两个选择器。 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>获取焦点热词消失之谜</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <style>
+    form {
+        position: relative;
+        top: 100px;
+        left: 100px;
+    }
+    
+    input,
+    button {
+        box-sizing: border-box;
+        float: left;
+    }
+    
+    input {
+        width: 300px;
+        height: 35px;
+        border: 1px solid #999999;
+        padding-left: 10px;
+    }
+    
+    button {
+        height: 35px;
+        width: 35px;
+        border: 1px solid #999999;
+        margin-left: -1px;
+        background: #fff;
+        color: #666666;
+    }
+    
+    input:focus~.hotword {
+        display: none;
+    }
+    
+    input:focus~button {
+        border: 1px solid #004080;
+        background: #004080;
+        color: #fff;
+    }
+    
+    input:focus {
+        outline-style: none;
+    }
+    
+    .hotword span {
+        background: #E6E6E6;
+        color: #999999;
+        margin-right: 5px;
+    }
+    
+    .hotword {
+        position: absolute;
+        height: 35px;
+        line-height: 35px;
+        left: 150px;
+    }
+    </style>
+</head>
+
+<body>
+    <form>
+        <input type="text" name="search" placeholder="输入搜索内容">
+        <button>
+            <span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+        <section class="hotword">
+            <span>热词1</span>
+            <span>热词2</span>
+            <span>热词3</span>
+        </section>
+    </form>
+
+</body>
+
+</html>

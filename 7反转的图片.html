@@ -1,0 +1,60 @@
+<!-- 这种效果可以轻易使用纯css来实现，唯一的奥妙是使用了backface-visibility这个css3属性。我们所看到的网页元素在页面上是存在正反两面的，所以需要依靠这个属性来限制反面的显示效果。
+具体代码如下： -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>反转的图片</title>
+    <style>
+    .wrap,
+    .front,
+    .back {
+        width: 200px;
+        height: 100px;
+        overflow: hidden;
+    }
+    
+    .wrap {
+        position: relative;
+        margin: 20px auto;
+        border: 10px solid #eee;
+    }
+    
+    .front,
+    .back {
+        position: absolute;
+        top: 0;
+        backface-visibility: hidden;
+        transition: all 1s linear;
+    }
+    
+    .front {
+        z-index: 2;
+    }
+    
+    .back {
+        transform: rotateY(180deg);
+        z-index: 1;
+    }
+    
+    .wrap:hover .front {
+        transform: rotateY(180deg);
+        z-index: 1;
+    }
+    
+    .wrap:hover .back {
+        transform: rotateY(360deg);
+        z-index: 2;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="front"><img src="http://o9zpgjn2s.bkt.clouddn.com/ac345982b2b7d0a2284d772bcdef76094a369afb.jpg" width="200px"></div>
+        <div class="back"><img src="http://o9zpgjn2s.bkt.clouddn.com/d52a2834349b033b5b349bfe16ce36d3d539bd51.jpg" width="200px"></div>
+    </div>
+</body>
+
+</html>

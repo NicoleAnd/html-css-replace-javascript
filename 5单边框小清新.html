@@ -1,0 +1,44 @@
+<!-- 表格当然是又细又清新的单边框最合心，但是简单的div浮动，明明设置了border:1px，然而盒子模型是很笨的，连接位置加起来就成了2px。其实只要让每个各自负向移动1像素就盖住了多余的一像素，利用zindex还能设置高亮。 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>单边框小清新</title>
+    <style>
+    .container {
+        width: 600px;
+    }
+    
+    .container div {
+        height: 200px;
+        width: 150px;
+        box-sizing: border-box;
+        border: 1px solid #eee;
+        float: left;
+        margin-left: -1px;
+        margin-top: -1px;
+        position: relative;
+    }
+    
+    .container div:hover {
+        border: 1px solid #008000;
+        z-index: 1;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+
+</html>
